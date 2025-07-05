@@ -1,11 +1,11 @@
-from OitoRainhas import OitoRainhas
+from HillClibing import HillClibing
 
-tabuleiro = OitoRainhas()
+tabuleiro = HillClibing()
+#tabuleiro.setTabuleiro([1, 2, 5, 2, 2, 7, 0, 4])
 
 print(tabuleiro.getTabuleiro())
 print(tabuleiro.getColisoes())
 
-tabuleiro.setTabuleiro([0, 7, 4, 5, 1, 3, 2, 6])
-print(tabuleiro.getTabuleiro())
-print(tabuleiro.getColisoes())
-print(tabuleiro.getFilhos())
+print(tabuleiro.loopHillClibing())
+
+
