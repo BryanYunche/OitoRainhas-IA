@@ -1,5 +1,6 @@
 from HillClibing import HillClibing
 from HillClibingEstacastico import HillClibingEstocastico
+from OitoRainhas import OitoRainhas
 #tabuleiro = HillClibing()
 #tabuleiro.setTabuleiro([1, 2, 5, 2, 2, 7, 0, 4])
 
@@ -8,13 +9,27 @@ from HillClibingEstacastico import HillClibingEstocastico
 
 #print(tabuleiro.loopHillClibing())
 
+tabuleiroPivo = OitoRainhas()
 
+tabuleiroPivo.reiniciaTabuleiro()
+print(tabuleiroPivo.tabuleiro)
 
-tabuleiro = HillClibingEstocastico()
-tabuleiro.reiniciaTabuleiro()
+tabuleiro01 = HillClibingEstocastico()
+tabuleiro02 = HillClibing()
 
-print(tabuleiro.getTabuleiro())
-print(tabuleiro.getColisoes())
+tabuleiro01.setTabuleiro(tabuleiroPivo.tabuleiro)
+tabuleiro02.setTabuleiro(tabuleiroPivo.tabuleiro)
 
-print(tabuleiro.loopHillClibingEstocasticos())
+print("Hill Clibing Estocático: ")
+print(tabuleiro01.getTabuleiro(), tabuleiro01.getColisoes())
+print()
+
+print(tabuleiro01.loopHillClibingEstocasticos())
+
+print("\nHill Clibing Normal: ")
+print(tabuleiro02.getTabuleiro(), tabuleiro02.getColisoes())
+print()
+
+print(tabuleiro02.loopHillClibing())
+
 

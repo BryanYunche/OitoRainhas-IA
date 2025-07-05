@@ -7,6 +7,7 @@ class HillClibingEstocastico(OitoRainhas):
         super().__init__()  # Inicia a super classe que eu estou herdando
         self.interacoes = 0
         self.tempo = 0.0
+        self.interacoes = 0
 
     def hillClibingEstocasticos(self):
         menorColisao = self.colisao
@@ -29,29 +30,21 @@ class HillClibingEstocastico(OitoRainhas):
             return self.tabuleiro, self.colisao
 
     def loopHillClibingEstocasticos(self):
-        max_restarts = 100
-        for _ in range(max_restarts):
-            self.reiniciaTabuleiro()
-            inicio = time.time()
-            estadoPai, colisao = self.hillClibingEstocasticos()
-            estadoFilho = []
+        self.interacoes = 0
+        max_iter = 500
 
-            colisaoPai = colisao
-            colisaoFilho = 0
-            iteracoes = 1
-            max_iter = 1000
+        estadoPai, colisaoPai = self.hillClibingEstocasticos()
+        self.interacoes += 1
 
-            while (colisaoPai >= colisaoFilho) and (estadoPai != estadoFilho) and (iteracoes < max_iter):
-                self.setTabuleiro(estadoPai)
-                estadoFilho, colisaoFilho = self.hillClibingEstocasticos()
-                colisaoPai = colisaoFilho
-                estadoPai = estadoFilho
-                iteracoes += 1
+        while self.interacoes < max_iter:
+            self.setTabuleiro(estadoPai)
+            estadoFilho, colisaoFilho = self.hillClibingEstocasticos()
+            self.interacoes += 1
 
-            fim = time.time()
-            tempoTotal = fim - inicio
+            if colisaoFilho >= colisaoPai or estadoFilho == estadoPai or colisaoFilho == 0:
+                break
 
-            if colisaoPai == 0:
-                return estadoPai, colisaoPai, iteracoes, tempoTotal
+            estadoPai = estadoFilho
+            colisaoPai = colisaoFilho
 
-        return estadoPai, colisaoPai, iteracoes, tempoTotal
+        return estadoPai, colisaoPai, self.interacoes

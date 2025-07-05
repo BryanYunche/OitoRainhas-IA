@@ -1,8 +1,5 @@
 import time
-
 from OitoRainhas import OitoRainhas
-from teste import inicio
-
 
 class HillClibing(OitoRainhas):
     def __init__(self):
@@ -11,6 +8,7 @@ class HillClibing(OitoRainhas):
         self.tempo = 0.0
 
     def hillClibing(self):
+        self.interacoes += 1
         menorColisao = self.colisao
         melhorEstado = self.tabuleiro
         for estado in self.filhos:
@@ -22,28 +20,24 @@ class HillClibing(OitoRainhas):
         return melhorEstado, menorColisao
 
     def loopHillClibing(self):
-        inicio = time.time()
-        estadoPai, colisao = self.hillClibing()
 
-        colisaoPai = colisao
-        colisaoFilho = 0
+        self.interacoes = 1  # conta a primeira chamada
+        estadoPai = self.tabuleiro
+        colisaoPai = self.colisao
 
-        #Iteraçao já começa com 1 pois já foi utilizado o hill clibing
-        iteracoes = 1
-
-        while colisaoPai > colisaoFilho:
-
-            self.setTabuleiro(estadoPai)
+        while True:
             estadoFilho, colisaoFilho = self.hillClibing()
+            self.interacoes += 1
 
-            colisaoPai = colisaoFilho
+            # Se não houver melhora ou o estado não mudar, para
+            if colisaoFilho >= colisaoPai or estadoFilho == estadoPai:
+                break
+
+            self.setTabuleiro(estadoFilho)
             estadoPai = estadoFilho
-            iteracoes = iteracoes + 1
+            colisaoPai = colisaoFilho
 
-        fim = time.time()
-        tempoTotal = fim - inicio
-
-        return estadoPai, colisaoPai, iteracoes, tempoTotal
+        return estadoFilho, colisaoFilho, self.interacoes
 
 
 
