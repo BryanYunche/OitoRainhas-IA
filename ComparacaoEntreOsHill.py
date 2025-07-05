@@ -1,13 +1,6 @@
 from HillClibing import HillClibing
 from HillClibingEstacastico import HillClibingEstocastico
 from OitoRainhas import OitoRainhas
-#tabuleiro = HillClibing()
-#tabuleiro.setTabuleiro([1, 2, 5, 2, 2, 7, 0, 4])
-
-#print(tabuleiro.getTabuleiro())
-#print(tabuleiro.getColisoes())
-
-#print(tabuleiro.loopHillClibing())
 
 tabuleiroPivo = OitoRainhas()
 

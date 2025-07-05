@@ -47,4 +47,4 @@ class HillClibingEstocastico(OitoRainhas):
             estadoPai = estadoFilho
             colisaoPai = colisaoFilho
 
-        return estadoPai, colisaoPai, self.interacoes
+        return estadoFilho, colisaoFilho, self.interacoes
