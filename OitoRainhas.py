@@ -1,36 +1,52 @@
 class OitoRainhas:
 
-    def __initi__(self):
-        self.tabuleiro = []
-        self.estadosFilho = []
-        self.colisao = 0
+    def __init__(self):
+        self.tabuleiro = [0, 0, 0, 0, 0, 0, 0, 0]
+        self.filhos = self.filhosTabuleiro(self.tabuleiro)
+        self.colisao = self.calculaColisoes(self.tabuleiro)
 
-    def geraTabuleiro(self):
-        estado = []
-        for i in range(8):
-            estado.append(0)
-            self.tabuleiro = estado
-        self.calculaColisoes()
-        return self.tabuleiro
-
-    def calculaColisoes(self):
+    def calculaColisoes(self, tabuleiro):
         colisoes = 0
-        for i in range(len(self.tabuleiro)):
-            for j in range(i + 1, len(self.tabuleiro)):
-                if self.tabuleiro[i] == self.tabuleiro[j]:
+        for i in range(len(tabuleiro)):
+            for j in range(i + 1, len(tabuleiro)):
+                if tabuleiro[i] == tabuleiro[j]:
                     colisoes += 1
-                elif abs(self.tabuleiro[i] - self.tabuleiro[j]) == abs(i - j):
+                elif abs(tabuleiro[i] - tabuleiro[j]) == abs(i - j):
                     colisoes += 1
-        self.colisao = colisoes
+        return colisoes
 
     def getColisoes(self):
         return self.colisao
 
-    def mudaPosicao(self, coluna, linha):
-        if (linha and coluna) in range(8):
-            self.tabuleiro[coluna] = linha
-            self.calculaColisoes()
-            return self.tabuleiro
-        else:
-            print("Digite um valor entre 0 e 7")
+    def getTabuleiro(self):
+        return self.tabuleiro
+
+    def getFilhos(self):
+        return self.filhos
+
+    #Vai calcular e preencher os valores da classe Oito Rainhas
+    def setTabuleiro(self, tabuleiro):
+        self.tabuleiro = tabuleiro
+        self.colisao = self.calculaColisoes(self.tabuleiro)
+        self.filhos = self.filhosTabuleiro(self.tabuleiro)
+
+    #Aqui vai gerar os filhos do tabuleiro com variações de +1 e -1
+    def filhosTabuleiro(self, lista):
+        filhos = []
+
+        for i in range(len(lista)):
+            if lista[i] > 0:
+                novo = lista.copy()
+                novo[i] -= 1
+                filhos.append(novo)
+            if lista[i] < 7:
+                novo = lista.copy()
+                novo[i] += 1
+                filhos.append(novo)
+
+        return filhos
+
+
+
+
 

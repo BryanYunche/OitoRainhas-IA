@@ -2,14 +2,10 @@ from OitoRainhas import OitoRainhas
 
 tabuleiro = OitoRainhas()
 
-estado01 = tabuleiro.geraTabuleiro()
-colisao = tabuleiro.getColisoes()
+print(tabuleiro.getTabuleiro())
+print(tabuleiro.getColisoes())
 
-print(estado01)
-print(colisao)
-
-estado01 = tabuleiro.mudaPosicao(0, 1)
-colisao = tabuleiro.getColisoes()
-
-print(estado01)
-print(colisao)
+tabuleiro.setTabuleiro([0, 7, 4, 5, 1, 3, 2, 6])
+print(tabuleiro.getTabuleiro())
+print(tabuleiro.getColisoes())
+print(tabuleiro.getFilhos())
