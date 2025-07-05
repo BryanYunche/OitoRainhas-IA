@@ -1,9 +1,13 @@
+from random import randint
 class OitoRainhas:
 
     def __init__(self):
         self.tabuleiro = [0, 0, 0, 0, 0, 0, 0, 0]
         self.filhos = self.filhosTabuleiro(self.tabuleiro)
         self.colisao = self.calculaColisoes(self.tabuleiro)
+
+    def reiniciaTabuleiro(self):
+        self.setTabuleiro([randint(0, 7) for _ in range(8)])
 
     def calculaColisoes(self, tabuleiro):
         colisoes = 0

@@ -15,7 +15,7 @@ class HillClibing(OitoRainhas):
         melhorEstado = self.tabuleiro
         for estado in self.filhos:
             valorColisao = self.calculaColisoes(estado)
-            if valorColisao <= menorColisao:
+            if valorColisao < menorColisao:
                 melhorEstado = estado
                 menorColisao = valorColisao
 
@@ -42,6 +42,7 @@ class HillClibing(OitoRainhas):
 
         fim = time.time()
         tempoTotal = fim - inicio
+
         return estadoPai, colisaoPai, iteracoes, tempoTotal
 
 
