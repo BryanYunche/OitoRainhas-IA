@@ -9,6 +9,9 @@ class OitoRainhas:
     def reiniciaTabuleiro(self):
         self.setTabuleiro([randint(0, 7) for _ in range(8)])
 
+    def geraTabuleiro(self):
+        return [randint(0, 7) for _ in range(8)]
+
     def calculaColisoes(self, tabuleiro):
         colisoes = 0
         for i in range(len(tabuleiro)):

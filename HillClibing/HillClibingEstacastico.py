@@ -5,7 +5,6 @@ from OitoRainhas import OitoRainhas
 class HillClibingEstocastico(OitoRainhas):
     def __init__(self):
         super().__init__()  # Inicia a super classe que eu estou herdando
-        self.interacoes = 0
         self.tempo = 0.0
         self.interacoes = 0
 
@@ -30,7 +29,6 @@ class HillClibingEstocastico(OitoRainhas):
             return self.tabuleiro, self.colisao
 
     def loopHillClibingEstocasticos(self):
-        self.interacoes = 0
         max_iter = 500
 
         estadoPai, colisaoPai = self.hillClibingEstocasticos()
@@ -39,10 +37,11 @@ class HillClibingEstocastico(OitoRainhas):
         while self.interacoes < max_iter:
             self.setTabuleiro(estadoPai)
             estadoFilho, colisaoFilho = self.hillClibingEstocasticos()
-            self.interacoes += 1
 
             if colisaoFilho >= colisaoPai or estadoFilho == estadoPai or colisaoFilho == 0:
                 break
+
+            self.interacoes += 1
 
             estadoPai = estadoFilho
             colisaoPai = colisaoFilho
